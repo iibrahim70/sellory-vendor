@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, MapPin, Calendar, Users, ShoppingBag, MessageCircle, ExternalLink } from "lucide-react";
+import { Star, MapPin, Calendar, Users, ShoppingBag, MessageCircle, ExternalLink, Shield, Award, Clock, Globe, Phone, Mail, Building, CheckCircle, TrendingUp, Target } from "lucide-react";
 import vendorBanner from "@/assets/vendor-banner.jpg";
 import vendorLogo from "@/assets/vendor-logo.jpg";
 
@@ -25,11 +25,44 @@ const VendorPage = () => {
     totalProducts: 156,
     totalSales: "10K+",
     responseTime: "< 2 hours",
-    description: "Premium technology solutions and innovative gadgets for modern professionals. We specialize in cutting-edge electronics and smart devices.",
+    subscriptionTier: "Enterprise",
+    businessType: "Certified Business",
+    yearsInBusiness: 8,
+    teamSize: "25-50",
+    businessHours: "Mon-Fri 9AM-6PM PST",
+    languages: ["English", "Spanish", "French"],
+    verificationStatus: "Verified Seller",
+    description: "Premium technology solutions and innovative gadgets for modern professionals. We specialize in cutting-edge electronics and smart devices with over 8 years of industry expertise.",
+    businessInfo: {
+      companyName: "TechVendor Pro LLC",
+      taxId: "Verified Business Entity",
+      businessAddress: "123 Innovation Drive, San Francisco, CA 94107",
+      phone: "+1 (555) 123-4567",
+      email: "hello@techvendorpro.com",
+      website: "www.techvendorpro.com"
+    },
+    certifications: [
+      "ISO 9001 Certified",
+      "CE Marking Compliance",
+      "FCC Authorized",
+      "RoHS Compliant"
+    ],
+    achievements: [
+      "Top Seller 2023",
+      "Customer Choice Award",
+      "Innovation Excellence",
+      "Quality Assurance Leader"
+    ],
     policies: {
-      shipping: "Free shipping on orders over $50",
-      returns: "30-day return policy",
-      warranty: "1-year manufacturer warranty"
+      shipping: "Free shipping on orders over $50 worldwide",
+      returns: "30-day hassle-free return policy",
+      warranty: "1-year manufacturer warranty + extended support"
+    },
+    stats: {
+      averageShippingTime: "2-3 days",
+      returnRate: "< 2%",
+      customerSatisfaction: "98.5%",
+      repeatCustomers: "75%"
     }
   };
 
@@ -87,6 +120,36 @@ const VendorPage = () => {
     }
   ];
 
+  const getSubscriptionBadge = () => {
+    const tier = vendorData.subscriptionTier;
+    const badgeConfig = {
+      "Enterprise": { 
+        color: "bg-gradient-to-r from-purple-600 to-purple-800 text-white", 
+        icon: <Award className="w-4 h-4" />,
+        label: "Enterprise Partner"
+      },
+      "Premium": { 
+        color: "bg-gradient-to-r from-amber-500 to-amber-700 text-white", 
+        icon: <Star className="w-4 h-4" />,
+        label: "Premium Seller"
+      },
+      "Standard": { 
+        color: "bg-gradient-to-r from-blue-500 to-blue-700 text-white", 
+        icon: <CheckCircle className="w-4 h-4" />,
+        label: "Verified Seller"
+      }
+    };
+    
+    const config = badgeConfig[tier] || badgeConfig.Standard;
+    
+    return (
+      <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold shadow-elegant ${config.color}`}>
+        {config.icon}
+        {config.label}
+      </div>
+    );
+  };
+
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star 
@@ -126,26 +189,51 @@ const VendorPage = () => {
                 <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-6">
                   <div className="space-y-4">
                     <div>
-                      <h1 className="text-4xl font-bold text-foreground mb-3 tracking-tight">{vendorData.name}</h1>
+                      <div className="flex flex-wrap items-center gap-3 mb-4">
+                        <h1 className="text-4xl font-bold text-foreground tracking-tight">{vendorData.name}</h1>
+                        {getSubscriptionBadge()}
+                      </div>
+                      
                       <div className="flex items-center gap-3 mb-3">
                         <div className="flex items-center gap-1 bg-primary-lighter px-3 py-1 rounded-full">
                           {renderStars(vendorData.rating)}
                           <span className="ml-2 text-sm font-semibold text-primary">{vendorData.rating}</span>
                         </div>
                         <span className="text-sm text-muted-foreground font-medium">({vendorData.totalReviews} reviews)</span>
-                        <Badge variant="secondary" className="bg-primary-lighter text-primary border-0">
-                          Verified
+                        <Badge variant="secondary" className="bg-green-100 text-green-800 border-0">
+                          <Shield className="w-3 h-3 mr-1" />
+                          {vendorData.verificationStatus}
+                        </Badge>
+                        <Badge variant="secondary" className="bg-blue-100 text-blue-800 border-0">
+                          <Building className="w-3 h-3 mr-1" />
+                          {vendorData.businessType}
                         </Badge>
                       </div>
                       
-                      <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-muted-foreground mb-4">
                         <div className="flex items-center gap-2">
-                          <MapPin className="w-4 h-4 text-primary" />
+                          <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
                           <span className="font-medium">{vendorData.location}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4 text-primary" />
-                          <span className="font-medium">Member since {vendorData.memberSince}</span>
+                          <Calendar className="w-4 h-4 text-primary flex-shrink-0" />
+                          <span className="font-medium">Member since {vendorData.memberSince} • {vendorData.yearsInBusiness} years in business</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Users className="w-4 h-4 text-primary flex-shrink-0" />
+                          <span className="font-medium">Team size: {vendorData.teamSize} employees</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-4 h-4 text-primary flex-shrink-0" />
+                          <span className="font-medium">{vendorData.businessHours}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Globe className="w-4 h-4 text-primary flex-shrink-0" />
+                          <span className="font-medium">Languages: {vendorData.languages.join(", ")}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <TrendingUp className="w-4 h-4 text-primary flex-shrink-0" />
+                          <span className="font-medium">{vendorData.stats.customerSatisfaction} satisfaction rate</span>
                         </div>
                       </div>
                     </div>
@@ -153,6 +241,33 @@ const VendorPage = () => {
                     <p className="text-muted-foreground text-base leading-relaxed max-w-2xl">
                       {vendorData.description}
                     </p>
+                    
+                    {/* Achievements & Certifications */}
+                    <div className="space-y-3">
+                      <div>
+                        <h3 className="text-sm font-semibold text-foreground mb-2">Achievements</h3>
+                        <div className="flex flex-wrap gap-2">
+                          {vendorData.achievements.map((achievement, index) => (
+                            <Badge key={index} variant="secondary" className="bg-amber-100 text-amber-800 border-0 text-xs">
+                              <Award className="w-3 h-3 mr-1" />
+                              {achievement}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-sm font-semibold text-foreground mb-2">Certifications</h3>
+                        <div className="flex flex-wrap gap-2">
+                          {vendorData.certifications.map((cert, index) => (
+                            <Badge key={index} variant="secondary" className="bg-primary-lighter text-primary border-0 text-xs">
+                              <CheckCircle className="w-3 h-3 mr-1" />
+                              {cert}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   
                   <div className="flex flex-col sm:flex-row gap-3 xl:flex-col xl:w-48">
@@ -172,55 +287,142 @@ const VendorPage = () => {
         </div>
       </div>
 
-      {/* Stats & Info Section */}
+      {/* Enhanced Stats Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 mb-12">
           <Card className="bg-gradient-card border-border/50 hover:shadow-card-hover transition-all duration-300 group">
-            <CardContent className="p-8 text-center">
-              <div className="bg-primary-lighter rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <ShoppingBag className="w-8 h-8 text-primary" />
+            <CardContent className="p-4 md:p-6 text-center">
+              <div className="bg-primary-lighter rounded-2xl w-12 h-12 md:w-16 md:h-16 flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
+                <ShoppingBag className="w-5 h-5 md:w-8 md:h-8 text-primary" />
               </div>
-              <div className="text-3xl font-bold text-foreground mb-1">{vendorData.totalProducts}</div>
-              <div className="text-sm text-muted-foreground font-medium">Total Products</div>
+              <div className="text-xl md:text-3xl font-bold text-foreground mb-1">{vendorData.totalProducts}</div>
+              <div className="text-xs md:text-sm text-muted-foreground font-medium">Products</div>
             </CardContent>
           </Card>
           
           <Card className="bg-gradient-card border-border/50 hover:shadow-card-hover transition-all duration-300 group">
-            <CardContent className="p-8 text-center">
-              <div className="bg-primary-lighter rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <Users className="w-8 h-8 text-primary" />
+            <CardContent className="p-4 md:p-6 text-center">
+              <div className="bg-primary-lighter rounded-2xl w-12 h-12 md:w-16 md:h-16 flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Users className="w-5 h-5 md:w-8 md:h-8 text-primary" />
               </div>
-              <div className="text-3xl font-bold text-foreground mb-1">{vendorData.totalSales}</div>
-              <div className="text-sm text-muted-foreground font-medium">Happy Customers</div>
+              <div className="text-xl md:text-3xl font-bold text-foreground mb-1">{vendorData.totalSales}</div>
+              <div className="text-xs md:text-sm text-muted-foreground font-medium">Customers</div>
             </CardContent>
           </Card>
           
           <Card className="bg-gradient-card border-border/50 hover:shadow-card-hover transition-all duration-300 group">
-            <CardContent className="p-8 text-center">
-              <div className="bg-primary-lighter rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <MessageCircle className="w-8 h-8 text-primary" />
+            <CardContent className="p-4 md:p-6 text-center">
+              <div className="bg-primary-lighter rounded-2xl w-12 h-12 md:w-16 md:h-16 flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
+                <MessageCircle className="w-5 h-5 md:w-8 md:h-8 text-primary" />
               </div>
-              <div className="text-3xl font-bold text-foreground mb-1">{vendorData.responseTime}</div>
-              <div className="text-sm text-muted-foreground font-medium">Avg Response</div>
+              <div className="text-xl md:text-3xl font-bold text-foreground mb-1">{vendorData.responseTime}</div>
+              <div className="text-xs md:text-sm text-muted-foreground font-medium">Response</div>
+            </CardContent>
+          </Card>
+          
+          <Card className="bg-gradient-card border-border/50 hover:shadow-card-hover transition-all duration-300 group">
+            <CardContent className="p-4 md:p-6 text-center">
+              <div className="bg-primary-lighter rounded-2xl w-12 h-12 md:w-16 md:h-16 flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Clock className="w-5 h-5 md:w-8 md:h-8 text-primary" />
+              </div>
+              <div className="text-xl md:text-3xl font-bold text-foreground mb-1">{vendorData.stats.averageShippingTime}</div>
+              <div className="text-xs md:text-sm text-muted-foreground font-medium">Shipping</div>
+            </CardContent>
+          </Card>
+          
+          <Card className="bg-gradient-card border-border/50 hover:shadow-card-hover transition-all duration-300 group">
+            <CardContent className="p-4 md:p-6 text-center">
+              <div className="bg-primary-lighter rounded-2xl w-12 h-12 md:w-16 md:h-16 flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Target className="w-5 h-5 md:w-8 md:h-8 text-primary" />
+              </div>
+              <div className="text-xl md:text-3xl font-bold text-foreground mb-1">{vendorData.stats.repeatCustomers}</div>
+              <div className="text-xs md:text-sm text-muted-foreground font-medium">Repeat Rate</div>
+            </CardContent>
+          </Card>
+          
+          <Card className="bg-gradient-card border-border/50 hover:shadow-card-hover transition-all duration-300 group">
+            <CardContent className="p-4 md:p-6 text-center">
+              <div className="bg-primary-lighter rounded-2xl w-12 h-12 md:w-16 md:h-16 flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
+                <TrendingUp className="w-5 h-5 md:w-8 md:h-8 text-primary" />
+              </div>
+              <div className="text-xl md:text-3xl font-bold text-foreground mb-1">{vendorData.stats.customerSatisfaction}</div>
+              <div className="text-xs md:text-sm text-muted-foreground font-medium">Satisfaction</div>
             </CardContent>
           </Card>
         </div>
 
-        {/* About & Policies */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        {/* Business Information & Contact Details */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-16">
           <div className="lg:col-span-2">
             <Card className="bg-gradient-card border-border/50 shadow-card">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold mb-6 text-foreground">About This Store</h2>
                 <p className="text-muted-foreground leading-relaxed text-base mb-6">{vendorData.description}</p>
+                
+                <div className="space-y-4 mb-6">
+                  <h3 className="text-lg font-semibold text-foreground">Business Information</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span className="font-semibold text-foreground">Company:</span>
+                      <p className="text-muted-foreground">{vendorData.businessInfo.companyName}</p>
+                    </div>
+                    <div>
+                      <span className="font-semibold text-foreground">Business Entity:</span>
+                      <p className="text-muted-foreground">{vendorData.businessInfo.taxId}</p>
+                    </div>
+                    <div className="sm:col-span-2">
+                      <span className="font-semibold text-foreground">Address:</span>
+                      <p className="text-muted-foreground">{vendorData.businessInfo.businessAddress}</p>
+                    </div>
+                  </div>
+                </div>
+                
                 <div className="flex flex-wrap gap-3">
                   <Badge variant="secondary" className="bg-primary-lighter text-primary border-0 px-3 py-1">Electronics</Badge>
                   <Badge variant="secondary" className="bg-primary-lighter text-primary border-0 px-3 py-1">Smart Devices</Badge>
                   <Badge variant="secondary" className="bg-primary-lighter text-primary border-0 px-3 py-1">Accessories</Badge>
+                  <Badge variant="secondary" className="bg-primary-lighter text-primary border-0 px-3 py-1">Innovation</Badge>
                 </div>
               </CardContent>
             </Card>
           </div>
+          
+          <Card className="bg-gradient-card border-border/50 shadow-card">
+            <CardContent className="p-8">
+              <h3 className="text-xl font-bold mb-6 text-foreground">Contact Information</h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary-lighter rounded-lg w-10 h-10 flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-sm text-foreground mb-1">Phone</div>
+                    <div className="text-sm text-muted-foreground">{vendorData.businessInfo.phone}</div>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary-lighter rounded-lg w-10 h-10 flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-sm text-foreground mb-1">Email</div>
+                    <div className="text-sm text-muted-foreground">{vendorData.businessInfo.email}</div>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary-lighter rounded-lg w-10 h-10 flex items-center justify-center flex-shrink-0">
+                    <Globe className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-sm text-foreground mb-1">Website</div>
+                    <div className="text-sm text-muted-foreground">{vendorData.businessInfo.website}</div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
           
           <Card className="bg-gradient-card border-border/50 shadow-card">
             <CardContent className="p-8">
@@ -246,7 +448,7 @@ const VendorPage = () => {
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="bg-primary-lighter rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Star className="w-4 h-4 text-primary" />
+                    <Shield className="w-4 h-4 text-primary" />
                   </div>
                   <div>
                     <div className="font-semibold text-sm text-foreground mb-1">Warranty</div>
