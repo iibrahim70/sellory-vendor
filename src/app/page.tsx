@@ -32,7 +32,7 @@ export default function Page() {
           className="h-[350px] w-full object-cover"
         />
 
-        <div className="container relative -mt-20 rounded-2xl shadow p-10 border bg-background">
+        <div className="container relative -mt-28 rounded-2xl shadow p-10 border bg-background">
           {vendorData?.map((item) => (
             <div className="space-y-5" key={item?.id}>
               <div className="flex items-center justify-between gap-5">
