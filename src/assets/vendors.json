@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "TechVendor Pro",
+    "rating": 4.8,
+    "totalReviews": 2847,
+    "location": "San Francisco, CA",
+    "memberSince": "2019",
+    "totalProducts": 156,
+    "totalSales": "10K+",
+    "responseTime": "< 2 hours",
+    "subscriptionTier": "Enterprise",
+    "businessType": "Certified Business",
+    "yearsInBusiness": 8,
+    "teamSize": "25-50",
+    "businessHours": "Mon-Fri 9AM-6PM PST",
+    "languages": ["English", "Spanish", "French"],
+    "verificationStatus": "Verified Seller",
+    "description": "Premium technology solutions and innovative gadgets for modern professionals. We specialize in cutting-edge electronics and smart devices with over 8 years of industry expertise.",
+    "businessInfo": {
+      "companyName": "TechVendor Pro LLC",
+      "taxId": "Verified Business Entity",
+      "businessAddress": "123 Innovation Drive, San Francisco, CA 94107",
+      "phone": "+1 (555) 123-4567",
+      "email": "hello@techvendorpro.com",
+      "website": "www.techvendorpro.com"
+    },
+    "certifications": [
+      "ISO 9001 Certified",
+      "CE Marking Compliance",
+      "FCC Authorized",
+      "RoHS Compliant"
+    ],
+    "achievements": [
+      "Top Seller 2023",
+      "Customer Choice Award",
+      "Innovation Excellence",
+      "Quality Assurance Leader"
+    ],
+    "policies": {
+      "shipping": "Free shipping on orders over $50 worldwide",
+      "returns": "30-day hassle-free return policy",
+      "warranty": "1-year manufacturer warranty + extended support"
+    },
+    "stats": {
+      "averageShippingTime": "2-3 days",
+      "returnRate": "< 2%",
+      "customerSatisfaction": "98.5%",
+      "repeatCustomers": "75%"
+    }
+  }
+]
