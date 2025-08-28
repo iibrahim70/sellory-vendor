@@ -32,7 +32,7 @@ export default function Page() {
           className="h-[350px] w-full object-cover"
         />
 
-        <div className="container relative -mt-28 rounded-2xl shadow p-10 border bg-background">
+        <div className="container relative -mt-20 rounded-2xl shadow p-10 border bg-background">
           {vendorData?.map((item) => (
             <div className="space-y-5" key={item?.id}>
               <div className="flex items-center justify-between gap-5">
@@ -170,6 +170,23 @@ export default function Page() {
                   harum quod, officiis, at id sit labore repellat autem dicta,
                   ipsum ipsam facilis impedit incidunt.
                 </p>
+              </div>
+
+              {/* Vendor Policies */}
+              <div className="space-y-1.5">
+                <h6>Policies</h6>
+
+                <ul className="list-disc pl-5 text-gray-700">
+                  <li>
+                    <strong>Shipping:</strong> {item.policies.shipping}
+                  </li>
+                  <li>
+                    <strong>Returns:</strong> {item?.policies.returns}
+                  </li>
+                  <li>
+                    <strong>Warranty:</strong> {item?.policies.warranty}
+                  </li>
+                </ul>
               </div>
 
               {/* Vendor Achievements*/}
