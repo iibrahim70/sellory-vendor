@@ -14,8 +14,6 @@ import {
   TrendingUp,
   UserPlus,
 } from "lucide-react";
-import vendorBanner from "@/assets/vendor-banner.jpg";
-import vendorLogo from "@/assets/vendor-logo.jpg";
 import vendorData from "@/assets/vendors.json";
 import Image from "next/image";
 import products from "@/assets/products.json";
@@ -27,7 +25,9 @@ export default function Page() {
       {/* Hero Section */}
       <div>
         <Image
-          src={vendorBanner}
+          src={vendorData[0]?.cover}
+          width={500}
+          height={500}
           alt={"Vendor Banner"}
           className="h-[350px] w-full object-cover"
         />
@@ -39,7 +39,9 @@ export default function Page() {
                 {/* Vendor Header */}
                 <div className="flex items-center gap-5 pb-3.5">
                   <Image
-                    src={vendorLogo}
+                    src={item?.avatar}
+                    width={500}
+                    height={500}
                     alt={"Vendor Logo"}
                     className="size-32 rounded-full object-cover border ring-2 ring-rose-600"
                   />
@@ -69,7 +71,7 @@ export default function Page() {
                   </div>
                 </div>
 
-                {/* CTA */}
+                {/* CTA (Desktop) */}
                 <div className="hidden lg:flex flex-col gap-2.5">
                   <Button variant="outline">
                     <MessageCircle className="size-4" />
@@ -83,7 +85,7 @@ export default function Page() {
                 </div>
               </div>
 
-              {/* CTA */}
+              {/* CTA (Mobile) */}
               <div className="flex lg:hidden flex-col gap-2.5">
                 <Button variant="outline">
                   <MessageCircle className="size-4" />
